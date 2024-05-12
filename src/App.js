@@ -5,8 +5,11 @@ function App() {
 	const [userData, setUserData] = useState([]);
 	const [singleUserData, setSingleUserData] = useState(null);
 	const [moreInfo, setmoreInfo] = useState(false);
+	const url = `http://localhost:3000/api/users`;
+	// const url2 = `https://jsonplaceholder.typicode.com/users`;
+	// console.log(userData);
 	const fetchData = () => {
-		fetch("https://jsonplaceholder.typicode.com/users")
+		fetch(url)
 			.then((response) => response.json())
 			.then((data) => {
 				setUserData(data);
@@ -15,8 +18,9 @@ function App() {
 				console.error("Error fetching data:", error);
 			});
 	};
+
 	const showMoreInfo = (id) => {
-		fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
+		fetch(`http://localhost:3000/api/users/${id}`)
 			.then((response) => response.json())
 			.then((data) => {
 				setSingleUserData(data);
@@ -54,15 +58,15 @@ function App() {
 												className="bg-orange-200 p-2 rounded-md max-w-72"
 												key={index}
 											>
-												<p>Name: {user.name}</p>
-												<p>Email: {user.email}</p>
-												{moreInfo && singleUserData.id === user.id ? (
-													<p>{singleUserData.phone}</p>
+												<p>Name: {user.user_nicename}</p>
+												<p>Email: {user.user_email}</p>
+												{moreInfo && singleUserData.ID === user.ID ? (
+													<p>{singleUserData.user_url}</p>
 												) : (
 													``
 												)}
 												<button
-													onClick={() => showMoreInfo(user.id)}
+													onClick={() => showMoreInfo(user.ID)}
 													className="px-2 mt-2 rounded-sm bg-orange-400"
 												>
 													More Info
@@ -74,15 +78,15 @@ function App() {
 												className="bg-orange-200 p-2 rounded-md max-w-72"
 												key={index}
 											>
-												<p>Name: {user.name}</p>
-												<p>Email: {user.email}</p>
-												{moreInfo && singleUserData.id === user.id ? (
-													<p>{singleUserData.phone}</p>
+												<p>Name: {user.user_nicename}</p>
+												<p>Email: {user.user_email}</p>
+												{moreInfo && singleUserData.ID === user.ID ? (
+													<p>{singleUserData.user_url}</p>
 												) : (
 													``
 												)}
 												<button
-													onClick={() => showMoreInfo(user.id)}
+													onClick={() => showMoreInfo(user.ID)}
 													className="px-2 mt-2 rounded-sm bg-orange-400"
 												>
 													More Info
